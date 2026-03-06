@@ -1,0 +1,30 @@
+:root {
+  color-scheme: light;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f3f4f6;
+  color: #111827;
+}
+
+a {
+  color: inherit;
+}
+
+.error-text {
+  color: #dc2626;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.status-text {
+  margin: 1rem 0;
+  color: #0f766e;
+  font-weight: 600;
+}
