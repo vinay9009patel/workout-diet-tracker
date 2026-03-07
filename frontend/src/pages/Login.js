@@ -29,22 +29,30 @@ function Login() {
   return (
     <main className="login-container">
       <section className="login-card">
-        <h2 className="login-title">Login</h2>
+        <p className="auth-logo">FITOPS</p>
+        <h2 className="login-title">Welcome Back</h2>
+        <p className="auth-subtitle">Sign in to continue your fitness journey.</p>
         <form className="login-form" onSubmit={handleSubmit}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            required
-          />
+          <div className="form-field">
+            <input
+              type="email"
+              placeholder=" "
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+            />
+            <label>Email</label>
+          </div>
+          <div className="form-field">
+            <input
+              type="password"
+              placeholder=" "
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              required
+            />
+            <label>Password</label>
+          </div>
           {error ? <p className="error-text">{error}</p> : null}
           <button className="login-btn" type="submit">
             Login

@@ -1,105 +1,149 @@
-/* page container */
-
-.register-container{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:#f1f5f9;
-  font-family:Arial, Helvetica, sans-serif;
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 18px;
+  background: radial-gradient(circle at top right, #1e293b 0%, #0f172a 60%);
 }
 
-/* card */
-
-.register-card{
-  background:white;
-  padding:35px;
-  width:360px;
-  border-radius:12px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.1);
-  text-align:center;
+.register-card {
+  width: 100%;
+  max-width: 460px;
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 18px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  padding: 30px;
 }
 
-/* title */
-
-.register-title{
-  font-size:26px;
-  margin-bottom:20px;
-  color:#1e293b;
+.auth-logo {
+  margin: 0;
+  color: #4f46e5;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 0.82rem;
 }
 
-/* form */
-
-.register-form{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
+.register-title {
+  margin: 8px 0 6px;
+  font-size: 1.8rem;
+  color: #f9fafb;
 }
 
-/* inputs */
-
-.register-form input{
-  padding:12px;
-  border:1px solid #ddd;
-  border-radius:6px;
-  font-size:14px;
-  transition:0.2s;
+.auth-subtitle {
+  margin: 0 0 16px;
+  color: #94a3b8;
 }
 
-.register-form input:focus{
-  outline:none;
-  border-color:#2563eb;
-  box-shadow:0 0 0 2px rgba(37,99,235,0.15);
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* error message */
-
-.error-text{
-  color:#ef4444;
-  font-size:14px;
+.register-form > label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #cbd5e1;
+  font-size: 0.9rem;
 }
 
-/* register button */
-
-.register-btn{
-  padding:12px;
-  background:#2563eb;
-  border:none;
-  border-radius:6px;
-  color:white;
-  font-weight:500;
-  cursor:pointer;
-  transition:0.2s;
+.register-form > label select,
+.register-form > label input[type="file"] {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #4b5563;
+  border-radius: 10px;
+  background: #111827;
+  color: #f9fafb;
 }
 
-.register-btn:hover{
-  background:#16a34a;
+.register-form > label select:focus,
+.register-form > label input[type="file"]:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
 }
 
-/* login link */
-
-.login-link{
-  margin-top:15px;
-  font-size:14px;
+.form-field {
+  position: relative;
 }
 
-.login-link a{
-  color:#2563eb;
-  text-decoration:none;
-  font-weight:500;
+.form-field input {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #4b5563;
+  border-radius: 10px;
+  background: #111827;
+  color: #f9fafb;
+  transition: all 0.25s ease;
 }
 
-.login-link a:hover{
-  text-decoration:underline;
+.form-field input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
 }
 
-/* mobile */
-
-@media(max-width:480px){
-
-.register-card{
-  width:90%;
-  padding:25px;
+.form-field label {
+  position: absolute;
+  left: 12px;
+  top: 11px;
+  color: #9ca3af;
+  font-size: 0.92rem;
+  pointer-events: none;
+  transition: all 0.2s ease;
 }
 
+.form-field input:focus + label,
+.form-field input:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 10px;
+  padding: 0 6px;
+  background: #1f2937;
+  color: #a5b4fc;
+  font-size: 0.76rem;
+}
+
+.register-avatar-preview {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #4b5563;
+}
+
+.error-text {
+  color: #ef4444;
+  font-size: 0.85rem;
+}
+
+.register-btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 11px;
+  color: #ffffff;
+  font-weight: 600;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.register-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 20px rgba(79, 70, 229, 0.28);
+}
+
+.login-link {
+  margin-top: 12px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.login-link a {
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: 600;
 }

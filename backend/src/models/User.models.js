@@ -22,6 +22,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    gender: {
+      type: String,
+      enum: ["male", "female", ""],
+      default: "",
+    },
   },
   { timestamps: true }
 );

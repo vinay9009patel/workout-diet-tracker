@@ -1,21 +1,36 @@
 import dotenv from "dotenv";
-import app from "./app.js";
 import connectDB from "./src/config/db.js";
 
 dotenv.config();
+console.log("GEMINI KEY LOADED:", !!process.env.GEMINI_API_KEY);
+console.log("MONGO URI LOADED:", !!process.env.MONGO_URI);
+console.log("JWT SECRET LOADED:", !!process.env.JWT_SECRET);
 
-const PORT = Number(process.env.PORT) || 5000;
+const { default: app } = await import("./app.js");
 
-const startServer = async () => {
-  try {
-    await connectDB();
-    app.listen(PORT, () => {
-      console.log(`Backend running on http://localhost:${PORT}`);
-    });
-  } catch (error) {
+const BASE_PORT = Number(process.env.PORT) || 5000;
+
+const startServer = (port) => {
+  const server = app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+
+  server.on("error", (error) => {
+    if (error.code === "EADDRINUSE") {
+      console.log(`Port ${port} busy, trying ${port + 1}`);
+      startServer(port + 1);
+      return;
+    }
+
     console.error("Failed to start server:", error.message);
     process.exit(1);
-  }
+  });
 };
 
-startServer();
+try {
+  await connectDB();
+  startServer(BASE_PORT);
+} catch (error) {
+  console.error("Failed to start server:", error.message);
+  process.exit(1);
+}

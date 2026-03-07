@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext.js";
+import defaultAvatar from "../assets/default-avatar.png";
 import "../styles/navbar.css";
 
 function Navbar() {
@@ -14,15 +15,28 @@ function Navbar() {
 
   return (
     <header className="navbar">
-      <h1 className="logo">Workout Diet Tracker</h1>
-      <nav className="nav-links">
-        <NavLink to="/dashboard">Dashboard</NavLink>
-        <NavLink to="/profile">Profile</NavLink>
+      <div className="navbar-search">
+        <input type="text" placeholder="Search workouts, meals, analytics..." />
+      </div>
+
+      <div className="navbar-user">
+        <button className="notify-btn" type="button" aria-label="Notifications">
+          0
+        </button>
+        <img
+          className="navbar-avatar"
+          src={user?.avatar ? `http://localhost:5000${user.avatar}` : defaultAvatar}
+          alt="User avatar"
+        />
         <span className="welcome">{user?.name || "User"}</span>
-        <button className="logout-btn" onClick={handleLogout} type="button">
+        <button
+          className="logout-btn"
+          onClick={handleLogout}
+          type="button"
+        >
           Logout
         </button>
-      </nav>
+      </div>
     </header>
   );
 }

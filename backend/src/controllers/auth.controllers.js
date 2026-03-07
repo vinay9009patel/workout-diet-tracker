@@ -12,7 +12,7 @@ const isStrongPassword = (password) => {
 
 export const signup = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, gender } = req.body;
 
     if (!name || !email || !password) {
       return res.status(400).json({ message: "name, email and password are required" });
@@ -35,6 +35,9 @@ export const signup = async (req, res) => {
       name,
       email: email.toLowerCase(),
       password: hashedPassword,
+      gender: ["male", "female"].includes(String(gender || "").toLowerCase())
+        ? String(gender).toLowerCase()
+        : "",
     });
 
     return res.status(201).json({
@@ -43,6 +46,7 @@ export const signup = async (req, res) => {
         _id: user._id,
         name: user.name,
         email: user.email,
+        gender: user.gender,
       },
     });
   } catch (error) {
@@ -80,6 +84,7 @@ export const login = async (req, res) => {
         name: user.name,
         email: user.email,
         avatar: user.avatar,
+        gender: user.gender || "",
       },
     });
   } catch (error) {
@@ -105,6 +110,26 @@ export const uploadAvatar = async (req, res) => {
 
     return res.json({
       message: "Avatar updated",
+      user,
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export const updateProfile = async (req, res) => {
+  try {
+    const incomingGender = String(req.body?.gender || "").toLowerCase();
+    const gender = ["male", "female", ""].includes(incomingGender) ? incomingGender : "";
+
+    const user = await User.findByIdAndUpdate(
+      req.user._id,
+      { gender },
+      { new: true, runValidators: true }
+    ).select("-password");
+
+    return res.json({
+      message: "Profile updated",
       user,
     });
   } catch (error) {

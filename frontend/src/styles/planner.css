@@ -1,0 +1,44 @@
+.planner-card {
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+}
+
+.planner-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.planner-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.planner-item span {
+  text-transform: capitalize;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.planner-item select {
+  padding: 10px 11px;
+  border-radius: 10px;
+  border: 1px solid #4b5563;
+  background: #111827;
+  color: #e5e7eb;
+}
+
+@media (max-width: 1080px) {
+  .planner-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .planner-grid {
+    grid-template-columns: 1fr;
+  }
+}
