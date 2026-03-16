@@ -12,15 +12,17 @@ import exercisesRoutes from "./src/routes/exercises.routes.js";
 
 const app = express();
 
+/* ---------- Fix __dirname for ES Modules ---------- */
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /* ---------- CORS ---------- */
 
 const allowedOrigins = [
-  process.env.FRONTEND_URL || "http://localhost:3000",
   "http://localhost:3000",
   "http://localhost:5173",
+  "https://workout-diet-tracker-withai.vercel.app"
 ];
 
 app.use(
@@ -45,7 +47,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/uploads", express.static(path.join(__dirname, "src/uploads")));
 
-/* ---------- Health Route ---------- */
+/* ---------- Health Check ---------- */
 
 app.get("/", (req, res) => {
   res.json({
